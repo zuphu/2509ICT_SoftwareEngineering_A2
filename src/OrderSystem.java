@@ -1,11 +1,44 @@
 import java.util.Scanner;
+import java.sql.*;
 
 public class OrderSystem {
 	public static void main(String[] args){
-		boolean state = true;
-		Operator.takeCall();
-		Operator.retrieveMenu();
-		addItemToOrder();
+		//boolean state = true;
+		//Operator.takeCall();
+		//Operator.retrieveMenu();
+		//addItemToOrder();
+		db_connect();
+	}
+	
+	public static void db_connect() {
+	    Connection c = null;
+	    Statement stmt = null;
+	    try {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection("jdbc:sqlite:database/OrdSystem.db");
+	      stmt = c.createStatement();
+	      ResultSet rs = stmt.executeQuery( "SELECT * FROM menuitemdetails;" );
+
+	      while ( rs.next() ) {
+	          int itemId = rs.getInt("id");
+	          String itemName = rs.getString("itemname");
+	          String itemDescription = rs.getString("itemdescription");
+	          Float itemCost = rs.getFloat("cost");
+
+	          System.out.println( "ID = " + itemId );
+	          System.out.println( "NAME = " + itemName );
+	          System.out.println( "Description = " + itemDescription );
+	          System.out.println( "Cost = " + itemCost );
+	          System.out.println();
+	       } 
+
+	    } catch ( Exception e ) {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+	    System.out.println("Opened database successfully");
+	    
+
 	}
 	
 	public static void addItemToOrder(){
