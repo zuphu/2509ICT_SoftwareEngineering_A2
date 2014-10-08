@@ -46,6 +46,27 @@ public class OrderSystem {
 
 	}
 	
+	public static boolean newNum (String testNum) {
+	    Connection c = null;
+	    Statement stmt = null;
+	    try {
+	        Class.forName("org.sqlite.JDBC");
+	        c = DriverManager.getConnection("jdbc:sqlite:database/OrdSystem.db");
+	        stmt = c.createStatement();
+	        ResultSet rs = stmt.executeQuery( "SELECT phonenumber FROM customerdetails WHERE phonenumber = " + testNum + ";"  );
+            boolean test = rs.first();
+            if(test)
+                return true;
+            else
+                return false;
+	    }
+	    catch ( Exception e ) {
+	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+	    }
+		return false;
+	}
+
 	public static void addItemToOrder(){
 		Operator.selectItemNumber();
 		Operator.selectQuantity();
