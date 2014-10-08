@@ -2,12 +2,17 @@ import java.util.Scanner;
 import java.sql.*;
 
 public class OrderSystem {
+	final static boolean running = true;
+	final static boolean stopped = false;
+
 	public static void main(String[] args){
-		//boolean state = true;
+		boolean state = running;
 		//Operator.takeCall();
 		//Operator.retrieveMenu();
+		Menu.db_connect();
+		Menu.printMenu();
 		//addItemToOrder();
-		db_connect();
+		//db_connect();
 	}
 	
 	public static void db_connect() {
