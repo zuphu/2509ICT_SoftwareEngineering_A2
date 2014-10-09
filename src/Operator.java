@@ -5,11 +5,22 @@ public class Operator {
 	public static void takeCall(){
 		askNumber();
 		//OrderSystem.checkNumber(CustomerDetails.getNumber());
-		askDetails(); //Check if correct...
+		//askDetails(); //Check if correct...
 	}
 	public static void askNumber(){
 		System.out.println("Enter your phone number.");
 		CustomerDetails.setNumber(keyboard.nextLine());
+		if(OrderSystem.newNum(CustomerDetails.number))
+		{
+			System.out.println("Is new");
+			askDetails();
+		}
+			else
+			{
+				System.out.println("Is not new");
+				retrieveMenu();
+			}
+		
 	}
 	public static void askDetails(){
 		askAddress();
@@ -45,6 +56,7 @@ public class Operator {
 	}
 
 	public static void listMenuItems(){
+		System.out.println("xxx");
 		Menu.printMenu();
 		System.out.println("Please enter a menu item number: ");
 	}
@@ -52,4 +64,5 @@ public class Operator {
 		System.out.println("Please enter a quntity: ");
 		// TODO Auto-generated method stub
 	}
+
 }

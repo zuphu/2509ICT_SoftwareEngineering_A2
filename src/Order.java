@@ -34,6 +34,6 @@ public class Order {
 		cost = 0;
 		for (OrderItem oi: orderItems)
 			cost += oi.mi.itemCost;
-		System.out.println(cost);
+		System.out.println("The cost is: " + cost);
 	}
 }

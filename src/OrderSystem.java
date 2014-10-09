@@ -57,9 +57,15 @@ public class OrderSystem {
 	        Class.forName("org.sqlite.JDBC");
 	        c = DriverManager.getConnection("jdbc:sqlite:database/OrdSystem.db");
 	        stmt = c.createStatement();
-	        ResultSet rs = stmt.executeQuery( "SELECT phonenumber FROM customerdetails WHERE phonenumber = " + testNum + ";"  );
-            boolean test = rs.first();
-            if(test)
+	        ResultSet rs = stmt.executeQuery("SELECT phonenumber FROM customerdetails WHERE phonenumber LIKE '%" + testNum + "%';"  );
+            /////
+	        int countResults = 0;
+	        while ( rs.next() ) {
+	        	  countResults++;
+		       } 
+	        /////
+	        //boolean test = rs.first();
+            if(countResults < 1)
                 return true;
             else
                 return false;
