@@ -15,11 +15,11 @@ public class Operator {
 			System.out.println("Is new");
 			askDetails();
 		}
-			else
-			{
-				System.out.println("Is not new");
-				retrieveMenu();
-			}
+		else
+		{
+			System.out.println("Is not new");
+			retrieveMenu();
+		}
 		
 	}
 	public static void askDetails(){
@@ -56,13 +56,16 @@ public class Operator {
 	}
 
 	public static void listMenuItems(){
-		System.out.println("xxx");
 		Menu.printMenu();
 		System.out.println("Please enter a menu item number: ");
 	}
 	public static void askQuantity() {
-		System.out.println("Please enter a quntity: ");
+		System.out.println("Please enter a quantity: ");
 		// TODO Auto-generated method stub
+	}
+
+	public static void giveOptions() {
+		System.out.println("1. Add Menu Item\n2.Modify Order \n3.Finish Order");
 	}
 
 }

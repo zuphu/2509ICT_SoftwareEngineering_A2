@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Customer {
 	static int itemNumber = -1;
 	static int itemQuantity = -1;
+	static int option = -1;
 	static Scanner keyboard = new Scanner(System.in);
 	
 	public static int getItemNumber () {
@@ -27,7 +28,10 @@ public class Customer {
 
 	public static void enterItemQuantity() {
 		itemQuantity = keyboard.nextInt();
-		keyboard.close();
+	}
+
+	public static void enterOptionNumber() {
+		option = keyboard.nextInt();
 	}
 
 }

@@ -3,19 +3,25 @@ import java.sql.*;
 
 public class OrderSystem {
 	final static boolean ready = true;
+	final static int addMenuItem = 1;
+	final static int modifyOrder = 2;
+	final static int finishOrder = 3;
 
 	public static void main(String[] args){
 		boolean state = ready;
 		//db_connect();
 		Operator.takeCall();
 		Operator.retrieveMenu();
-		Operator.listMenuItems();
-		Customer.enterItemNumber();
-		Operator.askQuantity();
-		Customer.enterItemQuantity();
-		Order.addItem(Customer.itemNumber, Customer.itemQuantity);
-		Order.updateOrderCost();
-		Operator.giveOptions();
+		do {
+                Operator.listMenuItems();
+                Customer.enterItemNumber();
+                Operator.askQuantity();
+                Customer.enterItemQuantity();
+                Order.addItem(Customer.itemNumber, Customer.itemQuantity);
+                Order.updateOrderCost();
+                Operator.giveOptions();
+                Customer.enterOptionNumber();
+		} while (Customer.option != finishOrder);
 		//Menu.printMenu();
 		//Operator.ask
 		//addItemToOrder();

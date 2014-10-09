@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Order {
 	static ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
-	static int cost = 0;
+	static float cost = 0;
 
 	public static void addItem(int itemNumber, int quantity){
 		OrderItem oi = new OrderItem();
@@ -33,7 +33,8 @@ public class Order {
 	public static void updateOrderCost() {
 		cost = 0;
 		for (OrderItem oi: orderItems)
-			cost += oi.mi.itemCost;
+			cost += (oi.mi.itemCost * oi.quantity);
+
 		System.out.println("The cost is: " + cost);
 	}
 }
