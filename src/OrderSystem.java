@@ -15,6 +15,7 @@ public class OrderSystem {
 		Customer.enterItemQuantity();
 		Order.addItem(Customer.itemNumber, Customer.itemQuantity);
 		Order.updateOrderCost();
+		Operator.giveOptions();
 		//Menu.printMenu();
 		//Operator.ask
 		//addItemToOrder();
@@ -57,7 +58,7 @@ public class OrderSystem {
 	        Class.forName("org.sqlite.JDBC");
 	        c = DriverManager.getConnection("jdbc:sqlite:database/OrdSystem.db");
 	        stmt = c.createStatement();
-	        ResultSet rs = stmt.executeQuery("SELECT phonenumber FROM customerdetails WHERE phonenumber LIKE '%" + testNum + "%';"  );
+	        ResultSet rs = stmt.executeQuery("SELECT phonenumber FROM customerdetails WHERE phonenumber LIKE '" + testNum + "';"  );
             /////
 	        int countResults = 0;
 	        while ( rs.next() ) {
