@@ -2,15 +2,19 @@ import java.util.Scanner;
 import java.sql.*;
 
 public class OrderSystem {
-	final static boolean running = true;
-	final static boolean stopped = false;
+	final static boolean ready = true;
 
 	public static void main(String[] args){
-		boolean state = running;
-		//Operator.takeCall();
-		//Operator.retrieveMenu();
-		Menu.db_connect();
-		Menu.printMenu();
+		boolean state = ready;
+		//db_connect();
+		Operator.takeCall();
+		Operator.retrieveMenu();
+		Operator.listMenuItems();
+		Customer.enterItemNumber();
+		Customer.enterItemQuantity();
+		//Order.addItem(Customer.itemNumber, Customer.itemQuantity);
+		//Menu.printMenu();
+		//Operator.ask
 		//addItemToOrder();
 		//db_connect();
 	}
@@ -22,18 +26,16 @@ public class OrderSystem {
 	      Class.forName("org.sqlite.JDBC");
 	      c = DriverManager.getConnection("jdbc:sqlite:database/OrdSystem.db");
 	      stmt = c.createStatement();
-	      ResultSet rs = stmt.executeQuery( "SELECT * FROM menuitemdetails;" );
-
+	      ResultSet rs = stmt.executeQuery( "SELECT * FROM customerdetails where phonenumber like '%04%'" );
+	      
 	      while ( rs.next() ) {
 	          int itemId = rs.getInt("id");
-	          String itemName = rs.getString("itemname");
-	          String itemDescription = rs.getString("itemdescription");
-	          Float itemCost = rs.getFloat("cost");
+	          String itemName = rs.getString("phonenumber");
+	          String itemDescription = rs.getString("creditcardnumber");
 
 	          System.out.println( "ID = " + itemId );
 	          System.out.println( "NAME = " + itemName );
 	          System.out.println( "Description = " + itemDescription );
-	          System.out.println( "Cost = " + itemCost );
 	          System.out.println();
 	       } 
 
