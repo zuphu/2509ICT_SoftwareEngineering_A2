@@ -21,6 +21,10 @@ public class OrderSystem {
                 Order.updateOrderCost();
                 Operator.giveOptions();
                 Customer.enterOptionNumber();
+                if (Customer.option == modifyOrder) {
+                	//Order.listOrderDetails();
+                }
+                	
 		} while (Customer.option != finishOrder);
 		//Menu.printMenu();
 		//Operator.ask
@@ -122,6 +126,22 @@ public class OrderSystem {
 				System.out.print("Invalid selection");
 				giveOptions();
 			}
+	}
+	
+	public static void saveCustomer(){
+		Connection c = null;
+	    Statement stmt = null;
+	    try {
+	        Class.forName("org.sqlite.JDBC");
+	        c = DriverManager.getConnection("jdbc:sqlite:database/OrdSystem.db");
+	        stmt = c.createStatement();
+	        stmt.execute("INSERT INTO customerdetails (phonenumber, address, creditcardnumber) VALUES ('" + CustomerDetails.getNumber()
+	        		+ "', '" + CustomerDetails.getAddress() + "', '" + CustomerDetails.getccNumber() + "');");
+	    }
+	    catch ( Exception e ) {
+	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+	    }
 	}
 }
 

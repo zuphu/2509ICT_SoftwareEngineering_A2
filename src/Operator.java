@@ -7,24 +7,18 @@ public class Operator {
 		//OrderSystem.checkNumber(CustomerDetails.getNumber());
 		//askDetails(); //Check if correct...
 	}
+
 	public static void askNumber(){
 		System.out.println("Enter your phone number.");
 		CustomerDetails.setNumber(keyboard.nextLine());
-		if(OrderSystem.newNum(CustomerDetails.number))
-		{
-			System.out.println("Is new");
-			askDetails();
-		}
-		else
-		{
-			System.out.println("Is not new");
-			retrieveMenu();
-		}
+		checkExisting();
 		
 	}
+
 	public static void askDetails(){
 		askAddress();
 		askccNumber();
+		OrderSystem.saveCustomer();
 	}
 	public static void askAddress(){
 		//checkNumber();
@@ -65,7 +59,20 @@ public class Operator {
 	}
 
 	public static void giveOptions() {
-		System.out.println("1. Add Menu Item\n2.Modify Order \n3.Finish Order");
+		System.out.println("1.Add Menu Item\n2.Modify Order \n3.Finish Order");
+	}
+	
+	public static void checkExisting(){
+		if(OrderSystem.newNum(CustomerDetails.number))
+		{
+			System.out.println("Is new");
+			askDetails();
+		}
+			else
+			{
+				System.out.println("Is not new");
+				retrieveMenu();
+			}
 	}
 
 }
