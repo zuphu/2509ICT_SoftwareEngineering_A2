@@ -45,9 +45,11 @@ public class Operator {
 	}
 
 	public static void listMenuItems(){
-		System.out.println("xxx");
 		Menu.printMenu();
 		System.out.println("Please enter a menu item number: ");
 	}
-
+	public static void askQuantity() {
+		System.out.println("Please enter a quntity: ");
+		// TODO Auto-generated method stub
+	}
 }

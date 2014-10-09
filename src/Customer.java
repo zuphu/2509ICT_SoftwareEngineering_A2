@@ -26,8 +26,8 @@ public class Customer {
 	}
 
 	public static void enterItemQuantity() {
-/*		System.out.println("damn");
-		itemQuantity = Integer.parseInt(keyboard.nextLine());*/
+		itemQuantity = keyboard.nextInt();
+		keyboard.close();
 	}
 
 }

@@ -11,8 +11,10 @@ public class OrderSystem {
 		Operator.retrieveMenu();
 		Operator.listMenuItems();
 		Customer.enterItemNumber();
+		Operator.askQuantity();
 		Customer.enterItemQuantity();
-		//Order.addItem(Customer.itemNumber, Customer.itemQuantity);
+		Order.addItem(Customer.itemNumber, Customer.itemQuantity);
+		Order.updateOrderCost();
 		//Menu.printMenu();
 		//Operator.ask
 		//addItemToOrder();
