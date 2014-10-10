@@ -5,7 +5,15 @@ public class Customer {
 	static int itemNumber = -1;
 	static int itemQuantity = -1;
 	static int option = -1;
+	static int modifyItem = -1;
+	static int modifyOption = -1;
+	static int confirmOrder = -1;
 	static Scanner keyboard = new Scanner(System.in);
+	static final int stateOrdering = 0;
+	static final int stateModifying = 1;
+	static final int stateConfirm = 2;
+	static final int confirmedOrder = 1;
+	static int state = stateOrdering;
 	
 	public static int getItemNumber () {
 		return Customer.itemNumber;
@@ -34,4 +42,19 @@ public class Customer {
 		option = keyboard.nextInt();
 	}
 
+	public static void enterModifyOrderItem() {
+		modifyItem = keyboard.nextInt();
+	}
+
+	public static void enterModifyOrderOption() {
+		modifyOption = keyboard.nextInt();
+	}
+
+	public static void setState(int state) {
+		Customer.state = state;
+	}
+
+	public static void confirmOrder() {
+		confirmOrder = keyboard.nextInt();
+	}
 }

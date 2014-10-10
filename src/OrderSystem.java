@@ -13,23 +13,45 @@ public class OrderSystem {
 		Operator.takeCall();
 		Operator.retrieveMenu();
 		do {
+			if (Customer.state == Customer.stateOrdering) {
                 Operator.listMenuItems();
                 Customer.enterItemNumber();
                 Operator.askQuantity();
                 Customer.enterItemQuantity();
                 Order.addItem(Customer.itemNumber, Customer.itemQuantity);
                 Order.updateOrderCost();
-                Operator.giveOptions();
-                Customer.enterOptionNumber();
-                if (Customer.option == modifyOrder) {
-                	//Order.listOrderDetails();
-                }
-                	
+                do {
+                     Operator.giveOptions();
+                     Customer.enterOptionNumber();
+                     switch (Customer.option ) {
+                     case addMenuItem:
+                    	Customer.setState(Customer.stateOrdering);
+                    	break; 
+                     case modifyOrder:
+                        Customer.setState(Customer.stateModifying);
+                        Order.modifyOrder();
+                        break;
+                     case finishOrder:
+                        Customer.setState(Customer.stateConfirm);
+                    	 break;
+                      }
+                     if (Customer.state == Customer.stateConfirm) {
+                    	 Order.listOrder();
+                    	 Order.updateOrderCost();
+                    	 Operator.askToConfirmOrder();
+                    	 Customer.confirmOrder();
+                    	 if (Customer.confirmOrder == Customer.confirmedOrder) {
+                    		 System.out.println("Placing order");
+                    		 Operator.placeOrder();
+                    	 }
+                    	 else {
+                    		 Customer.state = Customer.stateModifying;
+                    		 Customer.option = modifyOrder;
+                    	 }
+                     }
+                } while (Customer.option == modifyOrder);
+			}
 		} while (Customer.option != finishOrder);
-		//Menu.printMenu();
-		//Operator.ask
-		//addItemToOrder();
-		//db_connect();
 	}
 	
 	public static void db_connect() {

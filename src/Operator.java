@@ -62,17 +62,29 @@ public class Operator {
 		System.out.println("1.Add Menu Item\n2.Modify Order \n3.Finish Order");
 	}
 	
-	public static void checkExisting(){
-		if(OrderSystem.newNum(CustomerDetails.number))
-		{
-			System.out.println("Is new");
+	public static void checkExisting() {
+		if(OrderSystem.newNum(CustomerDetails.number)) {
+			System.out.println("{New Customer}");
 			askDetails();
 		}
-			else
-			{
-				System.out.println("Is not new");
-				retrieveMenu();
-			}
+		else
+			System.out.println("{Existing Customer}");
 	}
 
+	public static void askModifyItem() {
+		System.out.println("Please enter an item number to modify:");
+	}
+	
+	public static void askModifyOption() {
+		System.out.println("Would you like to: 1.Modify item quantity 2.Delete item from order");
+	}
+
+	public static void askToConfirmOrder() {
+		System.out.println("Are you sure you woud like to place your order? 1. Confirm 2.Cancel:");
+	}
+
+	public static void placeOrder() {
+		// TODO Auto-generated method stub
+		
+	}
 }
