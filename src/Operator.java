@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Operator { y
+public class Operator {
 	static Scanner keyboard = new Scanner(System.in);
 	public static void takeCall(){
 		askNumber();
