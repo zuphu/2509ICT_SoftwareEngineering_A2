@@ -1,4 +1,7 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
+import java.util.Date;
 import java.sql.*;
 
 public class OrderSystem {
@@ -11,6 +14,7 @@ public class OrderSystem {
 		boolean state = ready;
 		//db_connect();
 		Operator.takeCall();
+		Customer.enterType();
 		Operator.retrieveMenu();
 		do {
 			if (Customer.state == Customer.stateOrdering) {

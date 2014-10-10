@@ -1,3 +1,9 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Operator {
@@ -63,7 +69,7 @@ public class Operator {
 	}
 	
 	public static void checkExisting() {
-		if(OrderSystem.newNum(CustomerDetails.number)) {
+		if (OrderSystem.newNum(CustomerDetails.number)) {
 			System.out.println("{New Customer}");
 			askDetails();
 		}
@@ -84,7 +90,25 @@ public class Operator {
 	}
 
 	public static void placeOrder() {
-		// TODO Auto-generated method stub
-		
+		insertOrder();
+		DailyTakings.calculateDailyTakings();
 	}
+	
+	public static void insertOrder() {
+		Connection c = null;
+	    Statement stmt = null;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        
+	    try {
+	        Class.forName("org.sqlite.JDBC");
+	        c = DriverManager.getConnection("jdbc:sqlite:database/OrdSystem.db");
+	        stmt = c.createStatement();
+	        stmt.execute("INSERT INTO dailyorders (id, orderdate, totalordercost) VALUES (null, '" + dateFormat.format(date) + "', " + Order.cost + ");" );
+	    }
+	    catch ( Exception e ) {
+	        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+	    }
+	}	
 }

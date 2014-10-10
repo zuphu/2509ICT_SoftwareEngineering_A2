@@ -8,6 +8,7 @@ public class Customer {
 	static int modifyItem = -1;
 	static int modifyOption = -1;
 	static int confirmOrder = -1;
+	static int orderType = -1;
 	static Scanner keyboard = new Scanner(System.in);
 	static final int stateOrdering = 0;
 	static final int stateModifying = 1;
@@ -56,5 +57,10 @@ public class Customer {
 
 	public static void confirmOrder() {
 		confirmOrder = keyboard.nextInt();
+	}
+
+	public static void enterType() {
+		System.out.println("Please select either takeaway(1) or home delivery(2):");
+		orderType = keyboard.nextInt();
 	}
 }

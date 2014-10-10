@@ -1,6 +1,6 @@
 drop table if exists customerdetails;
 drop table if exists menuitemdetails;
-drop table if exists dailytakings;
+drop table if exists dailyorders;
 
 create table customerdetails (
   id               integer primary key autoincrement,
@@ -16,9 +16,10 @@ create table menuitemdetails (
   cost            decimal(2, 2)
 );
 
-create table dailytakings (
-  id          integer primary key autoincrement,
-  takingdate  date not null
+create table dailyorders (
+  id         integer primary key autoincrement,
+  orderdate  date not null,
+  totalordercost  decimal(2, 2)
 );
 
 /*customerdetails*/
@@ -30,5 +31,9 @@ insert into menuitemdetails(id, itemname, itemdescription, cost) values (null,'P
 insert into menuitemdetails(id, itemname, itemdescription, cost) values (null,'Lasanga','Pasta layered with tomato sauce and ground beef.', '9.50');
 insert into menuitemdetails(id, itemname, itemdescription, cost) values (null,'Beer','On tap beer.', '4.50');
 
+/*dailyorders*/
+insert into dailyorders(id, orderdate, totalordercost) values (null,'2014-10-20', 200.20);
+
 select * from customerdetails;
 select * from menuitemdetails;
+select * from dailyorders;
