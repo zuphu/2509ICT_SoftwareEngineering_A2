@@ -16,6 +16,7 @@ public class Order {
 		orderItems.add(oi);
 	}
 	
+	//do these do anything??
 	public static void orderCost() {
 		
 	}
@@ -73,3 +74,4 @@ public class Order {
 		}
 	}
 }
+

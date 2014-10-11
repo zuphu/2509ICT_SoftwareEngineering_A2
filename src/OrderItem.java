@@ -10,6 +10,5 @@ public class OrderItem {
 	public OrderItem (MenuItem mi, int quantity) {
 		this.mi = mi;
 		this.quantity = quantity;
-	}
-	
+	}	
 }

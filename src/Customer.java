@@ -22,8 +22,6 @@ public class Customer {
 
 	public static void enterCustomerNumber () {
 		String number;
-		Scanner keyboard = new Scanner(System.in);
-		
 		number = keyboard.nextLine();
 	}
 	
