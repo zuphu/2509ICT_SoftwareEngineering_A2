@@ -11,7 +11,6 @@ public class OrderSystem {
 	final static int finishOrder = 3;
 
 	public static void main(String[] args){
-		boolean state = ready;
 		//db_connect();
 		Operator.takeCall();
 		Customer.enterType();
@@ -83,8 +82,6 @@ public class OrderSystem {
 	      System.exit(0);
 	    }
 	    System.out.println("Opened database successfully");
-	    
-
 	}
 	
 	public static boolean newNum (String testNum) {

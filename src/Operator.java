@@ -10,15 +10,20 @@ public class Operator {
 	static Scanner keyboard = new Scanner(System.in);
 	public static void takeCall(){
 		askNumber();
-		//OrderSystem.checkNumber(CustomerDetails.getNumber());
-		//askDetails(); //Check if correct...
+		askDetails();
 	}
 
 	public static void askNumber(){
 		System.out.println("Enter your phone number.");
-		CustomerDetails.setNumber(keyboard.nextLine());
+		try {
+			CustomerDetails.setNumber(keyboard.nextLine());
+			if (CustomerDetails.number.length() < 8 || CustomerDetails.number.length() > 10)
+				throw new ArrayIndexOutOfBoundsException();
+		} catch (Exception e) {
+			System.out.println("Invalid number");
+			askNumber();
+		}
 		checkExisting();
-		
 	}
 
 	public static void askDetails(){
@@ -26,17 +31,22 @@ public class Operator {
 		askccNumber();
 		OrderSystem.saveCustomer();
 	}
+	
 	public static void askAddress(){
-		//checkNumber();
 		System.out.println("Please Enter your Address.");
 		CustomerDetails.setAddress(keyboard.nextLine());
-		
 	}
+	
 	public static void askccNumber(){
-		String ccNumber;
-		System.out.println("Please Enter your Credit-Card Details.");
-		ccNumber = keyboard.nextLine();
-		CustomerDetails.setccNumber(ccNumber);
+		System.out.println("Please Enter your Credit-Card Details. (no spaces");
+		try {
+			CustomerDetails.setccNumber(keyboard.nextLine());
+			if(CustomerDetails.ccNumber.length() != 16)
+				throw new ArrayIndexOutOfBoundsException();
+		} catch (Exception e) {
+			System.out.println("Invalid number");
+			askccNumber();
+		}
 	}
 	public static void retrieveMenu(){
 		Menu.db_connect();
@@ -71,7 +81,6 @@ public class Operator {
 	public static void checkExisting() {
 		if (OrderSystem.newNum(CustomerDetails.number)) {
 			System.out.println("{New Customer}");
-			askDetails();
 		}
 		else
 			System.out.println("{Existing Customer}");
