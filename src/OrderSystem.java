@@ -36,7 +36,10 @@ public class OrderSystem {
                      case finishOrder:
                         Customer.setState(Customer.stateConfirm);
                     	 break;
-                      }
+                     default:
+                    	 System.out.println("Invalid selection");
+                     }
+                     
                      if (Customer.state == Customer.stateConfirm) {
                     	 Order.listOrder();
                     	 Order.updateOrderCost();

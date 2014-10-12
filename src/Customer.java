@@ -19,14 +19,17 @@ public class Customer {
 	public static int getItemNumber () {
 		return Customer.itemNumber;
 	}
-
-	public static void enterCustomerNumber () {
-		String number;
-		number = keyboard.nextLine();
-	}
 	
 	public static void enterItemNumber () {
-		itemNumber = keyboard.nextInt();
+		System.out.println("Please enter a menu item number: ");
+		try {
+			itemNumber = keyboard.nextInt();
+			if(itemNumber > 4 || itemNumber < 1)
+				throw new ArrayIndexOutOfBoundsException();
+		} catch (Exception e) {
+			System.out.println("Invalid selection");
+			enterItemNumber();
+		}
 	}
 
 	public static int askNumber() {
@@ -38,15 +41,39 @@ public class Customer {
 	}
 
 	public static void enterOptionNumber() {
-		option = keyboard.nextInt();
+		try {
+			option = keyboard.nextInt();
+			if(option < 1 || option > 3)
+				throw new ArrayIndexOutOfBoundsException();
+		} catch (Exception e) {
+			System.out.println("Invalid selecton");
+			Operator.giveOptions();
+			enterOptionNumber();
+		}
 	}
 
 	public static void enterModifyOrderItem() {
-		modifyItem = keyboard.nextInt();
+		try {
+			modifyItem = keyboard.nextInt();
+			if(modifyItem < 1 || modifyItem > Order.getItems())
+				throw new ArrayIndexOutOfBoundsException();
+		} catch (Exception e) {
+			System.out.println("Invalid selection");
+			Operator.askModifyItem();
+			enterModifyOrderItem();
+		}
 	}
 
 	public static void enterModifyOrderOption() {
-		modifyOption = keyboard.nextInt();
+		try {
+			modifyOption = keyboard.nextInt();
+			if(modifyOption < 1 || modifyOption > 2)
+				throw new ArrayIndexOutOfBoundsException();
+		} catch (Exception e) {
+			System.out.println("Invalid selection");
+			Operator.askModifyOption();
+			enterModifyOrderOption();
+		}
 	}
 
 	public static void setState(int state) {
@@ -54,11 +81,30 @@ public class Customer {
 	}
 
 	public static void confirmOrder() {
-		confirmOrder = keyboard.nextInt();
+		try {
+			confirmOrder = keyboard.nextInt();
+			if(confirmOrder < 1 || confirmOrder > 2)
+				throw new ArrayIndexOutOfBoundsException();
+		} catch (Exception e) {
+			System.out.println("Invalid selection");
+			Operator.askToConfirmOrder();
+			confirmOrder();
+		}
 	}
 
 	public static void enterType() {
 		System.out.println("Please select either takeaway(1) or home delivery(2):");
-		orderType = keyboard.nextInt();
+		try {
+			orderType = keyboard.nextInt();
+			if(orderType > 2 || orderType < 1)
+				throw new ArrayIndexOutOfBoundsException();
+		} catch (Exception e) {
+			System.out.println("Invaldid selection");
+			enterType();
+		}
+		if(orderType == 1)
+			System.out.println("Take-away selected");
+		else
+			System.out.println("Home-delivery selected");
 	}
 }

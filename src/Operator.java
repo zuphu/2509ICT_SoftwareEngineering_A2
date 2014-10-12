@@ -56,8 +56,7 @@ public class Operator {
 		Menu.db_connect();
 	}
 	public static void selectItemNumber(){
-		int itemNumber;
-		itemNumber = keyboard.nextInt();
+		int	itemNumber = keyboard.nextInt();
 		//Order.addItem(itemNumber);
 	}
 	public static void selectQuantity(){
@@ -71,7 +70,6 @@ public class Operator {
 
 	public static void listMenuItems(){
 		Menu.printMenu();
-		System.out.println("Please enter a menu item number: ");
 	}
 	public static void askQuantity() {
 		System.out.println("Please enter a quantity: ");

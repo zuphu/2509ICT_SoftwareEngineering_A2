@@ -6,6 +6,7 @@ public class Order {
 	static float cost = 0;
 	final static int modifyItem = 1;
 	final static int deleteItem = 2;
+	static int items = 0;
 
 	public static void addItem(int itemNumber, int quantity){
 		OrderItem oi = new OrderItem();
@@ -14,6 +15,7 @@ public class Order {
 		oi.mi = mi;
 		oi.quantity = quantity;
 		orderItems.add(oi);
+		items++;
 	}
 	
 	//do these do anything??
@@ -71,7 +73,11 @@ public class Order {
 		else if (selection == deleteItem)
 		{
 			orderItems.remove(Customer.modifyItem - 1);
+			items--;
 		}
+	}
+	public static int getItems() {
+		return (items);
 	}
 }
 
