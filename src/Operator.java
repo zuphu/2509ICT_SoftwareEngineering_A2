@@ -7,23 +7,27 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Operator {
+	final static int numberMin = 8;
+	final static int numberMax = 10;
+	final static int creditCardLen = 16;
+	
 	static Scanner keyboard = new Scanner(System.in);
 	public static void takeCall(){
 		askNumber();
-		askDetails();
 	}
 
 	public static void askNumber(){
 		System.out.println("Enter your phone number.");
 		try {
 			CustomerDetails.setNumber(keyboard.nextLine());
-			if (CustomerDetails.number.length() < 8 || CustomerDetails.number.length() > 10)
+			if (CustomerDetails.number.length() < numberMin || CustomerDetails.number.length() > numberMax)
 				throw new ArrayIndexOutOfBoundsException();
+			else
+				checkExisting();
 		} catch (Exception e) {
-			System.out.println("Invalid number");
+			System.out.println("INVALID: Number is too short or long (must be between " + numberMin + " and " + numberMax + " characters)");
 			askNumber();
 		}
-		checkExisting();
 	}
 
 	public static void askDetails(){
@@ -38,13 +42,13 @@ public class Operator {
 	}
 	
 	public static void askccNumber(){
-		System.out.println("Please Enter your Credit-Card Details. (no spaces");
+		System.out.println("Please Enter your Credit-Card Details. (no spaces)");
 		try {
 			CustomerDetails.setccNumber(keyboard.nextLine());
-			if(CustomerDetails.ccNumber.length() != 16)
+			if(CustomerDetails.ccNumber.length() != creditCardLen)
 				throw new ArrayIndexOutOfBoundsException();
 		} catch (Exception e) {
-			System.out.println("Invalid number");
+			System.out.println("INVALID: Credit card number must be " + creditCardLen + " characters");
 			askccNumber();
 		}
 	}

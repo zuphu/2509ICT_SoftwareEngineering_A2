@@ -11,7 +11,6 @@ public class OrderSystem {
 	final static int finishOrder = 3;
 
 	public static void main(String[] args){
-		//db_connect();
 		Operator.takeCall();
 		Customer.enterType();
 		Operator.retrieveMenu();
