@@ -21,7 +21,7 @@ public class Operator {
 		try {
 			CustomerDetails.setNumber(keyboard.nextLine());
 			if (CustomerDetails.number.length() < numberMin || CustomerDetails.number.length() > numberMax)
-				throw new ArrayIndexOutOfBoundsException();
+				throw new Exception();
 			else
 				checkExisting();
 		} catch (Exception e) {
@@ -46,7 +46,7 @@ public class Operator {
 		try {
 			CustomerDetails.setccNumber(keyboard.nextLine());
 			if(CustomerDetails.ccNumber.length() != creditCardLen)
-				throw new ArrayIndexOutOfBoundsException();
+				throw new Exception();
 		} catch (Exception e) {
 			System.out.println("INVALID: Credit card number must be " + creditCardLen + " characters");
 			askccNumber();
@@ -85,6 +85,7 @@ public class Operator {
 	public static void checkExisting() {
 		if (OrderSystem.newNum(CustomerDetails.number)) {
 			System.out.println("{New Customer}");
+			askDetails();
 		}
 		else
 			System.out.println("{Existing Customer}");
