@@ -14,6 +14,16 @@ public class Customer {
 	static final int stateModifying = 1;
 	static final int stateConfirm = 2;
 	static final int confirmedOrder = 1;
+	static final int confirmOrderMin = 1;
+	static final int confirmOrderMax = 2;
+	static final int modifyOrderOptionMin = 1;
+	static final int modifyOrderOptionMax = 2;
+	static final int itemNumberMin = 1;
+	static final int itemQuantityMin = 1;
+	static final int itemQuantityMax = 200;
+	static final int optionMin = 1;
+	static final int optionMax = 3;
+	static final int modifyOrderItemMin = 1;
 	static int state = stateOrdering;
 	
 	public static int getItemNumber () {
@@ -24,10 +34,11 @@ public class Customer {
 		System.out.println("Please enter a menu item number: ");
 		try {
 			itemNumber = keyboard.nextInt();
-			if(itemNumber > 4 || itemNumber < 1)
+			if(itemNumber < itemNumberMin || itemNumber > Menu.numberOfMenuItems)
 				throw new ArrayIndexOutOfBoundsException();
 		} catch (Exception e) {
-			System.out.println("Invalid selection");
+			System.out.println("INVALID: Invalid selection, valid selections are between " + itemNumberMin + " and " + Menu.numberOfMenuItems);
+			keyboard.nextLine();
 			enterItemNumber();
 		}
 	}
@@ -37,17 +48,25 @@ public class Customer {
 	}
 
 	public static void enterItemQuantity() {
-		itemQuantity = keyboard.nextInt();
+		try {
+			itemQuantity = keyboard.nextInt();
+			if(itemQuantity < itemQuantityMin || itemQuantity > itemQuantityMax)
+				throw new ArrayIndexOutOfBoundsException();
+		} catch (Exception e) {
+			System.out.println("INVALID: Invalid item quantity, valid quantities are between " + itemQuantityMin + " and " + itemQuantityMax);
+			keyboard.nextLine();
+			enterItemQuantity();
+		}
 	}
 
 	public static void enterOptionNumber() {
 		try {
 			option = keyboard.nextInt();
-			if(option < 1 || option > 3)
+			if(option < optionMin || option > optionMax)
 				throw new ArrayIndexOutOfBoundsException();
 		} catch (Exception e) {
-			System.out.println("Invalid selecton");
-			Operator.giveOptions();
+			System.out.println("INVALID: Invalid option selected. Selection must be between " + optionMin +" and " + optionMax);
+			keyboard.nextLine();
 			enterOptionNumber();
 		}
 	}
@@ -55,11 +74,11 @@ public class Customer {
 	public static void enterModifyOrderItem() {
 		try {
 			modifyItem = keyboard.nextInt();
-			if(modifyItem < 1 || modifyItem > Order.getItems())
+			if(modifyItem < modifyOrderItemMin || modifyItem > Order.getItems())
 				throw new ArrayIndexOutOfBoundsException();
 		} catch (Exception e) {
-			System.out.println("Invalid selection");
-			Operator.askModifyItem();
+			System.out.println("INVALID: Invalid selection must be between " + modifyOrderItemMin + " and " + Order.getItems() );
+			keyboard.nextLine();
 			enterModifyOrderItem();
 		}
 	}
@@ -67,11 +86,12 @@ public class Customer {
 	public static void enterModifyOrderOption() {
 		try {
 			modifyOption = keyboard.nextInt();
-			if(modifyOption < 1 || modifyOption > 2)
+			if(modifyOption < modifyOrderOptionMin || modifyOption > modifyOrderOptionMax)
 				throw new ArrayIndexOutOfBoundsException();
 		} catch (Exception e) {
-			System.out.println("Invalid selection");
-			Operator.askModifyOption();
+			System.out.println("INVALID: Invalid selection for option, please select a number between " + 
+								modifyOrderOptionMin + " and " + modifyOrderOptionMax);
+			keyboard.nextLine();
 			enterModifyOrderOption();
 		}
 	}
@@ -83,11 +103,12 @@ public class Customer {
 	public static void confirmOrder() {
 		try {
 			confirmOrder = keyboard.nextInt();
-			if(confirmOrder < 1 || confirmOrder > 2)
+			if(confirmOrder < confirmOrderMin || confirmOrder > confirmOrderMax)
 				throw new ArrayIndexOutOfBoundsException();
 		} catch (Exception e) {
-			System.out.println("Invalid selection");
-			Operator.askToConfirmOrder();
+			System.out.println("INVALID: Invalid selection for option, please select a number between " + 
+								confirmOrderMin + " and " + confirmOrderMax);
+			keyboard.nextLine();
 			confirmOrder();
 		}
 	}
@@ -96,10 +117,11 @@ public class Customer {
 		System.out.println("Please select either takeaway(1) or home delivery(2):");
 		try {
 			orderType = keyboard.nextInt();
-			if(orderType > 2 || orderType < 1)
+			if(orderType < confirmOrderMin || orderType > confirmOrderMax)
 				throw new ArrayIndexOutOfBoundsException();
 		} catch (Exception e) {
-			System.out.println("Invaldid selection");
+			System.out.println("INVALID: Invalid selection, please enter a valid selection");
+			keyboard.nextLine();
 			enterType();
 		}
 		if(orderType == 1)

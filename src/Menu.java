@@ -33,7 +33,6 @@ public class Menu {
 	          mi.setItemCost(itemCost);
 	          menuList.add(mi);
 	       } 
-
 	    } catch ( Exception e ) {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	      System.exit(0);
@@ -52,10 +51,6 @@ public class Menu {
 			System.out.println("Cost:\t\t" + mi.itemCost);
 			System.out.println("*-=-=-=-=-=-=-=-=-=-=-*");
 		}
-	}
-	
-	public int getNumberOfMenuItems() {
-		return Menu.numberOfMenuItems;
 	}
 	
 	public static MenuItem getMenuItem(int index) {
